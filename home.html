@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeviceTech</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="assets/style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="navbarall ">
+      <div class="navbar">
+        <div class="logo">
+          <img
+            src="assets/images/logo.png "
+            alt=""
+            height="80px"
+            width="80px"
+          />
+          <h1 class="Devicetech">Device<span class="h1tech">Tech</span></h1>
+        </div>
+        <div class="navicons ">
+          <i
+            class="fa-solid fa-magnifying-glass fa-2x"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasTop"
+            aria-controls="offcanvasTop"
+          ></i>
+          <i
+            class="fa-solid fa-cart-shopping fa-2x"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+          ></i>
+          <span class="badge bg-success" id="cartCounts">0</span>
+          <i
+            class="fa-solid fa-heart fa-2x"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasWishlist"
+            aria-controls="offcanvasWishlist"
+          ></i>
+          <span class="badge bg-success roounded-3" id="wishCounts">0</span>
+        </div>
+      </div>
+    </div>
+    <!-- Cart Canvas-->
+    <div
+      class="offcanvas offcanvas-end w-100"
+      tabindex="-1"
+      id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Your Cart Products</h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <!-- <h5 class="text-end" id="totalamt"></h5> -->
+        <table class="table table-primary text-center">
+          <thead>
+            <tr>
+              <td>Title</td>
+              <td>Price</td>
+              <td>Quantity</td>
+              <td>Total Price</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody id="cartRow"></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Wishlist Canvas -->
+    <div
+      class="offcanvas offcanvas-start w-100"
+      tabindex="-1"
+      id="offcanvasWishlist"
+      aria-labelledby="offcanvasWishlistLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 id="offcanvasWishlistLabel">Your Wishlist</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"  aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <table class="table table-primary text-center">
+          <thead>
+            <tr>
+              <td>Desert</td>
+              <td>Title</td>
+              <td>Price</td>
+              <td>Quantity</td>
+              <td>Total price</td>
+              <td>Remove</td>
+            </tr>
+          </thead>
+          <tbody id="wishRow"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Search Canvas-->
+    <div
+      class="offcanvas offcanvas-top vh-100"
+      tabindex="-1"
+      id="offcanvasTop"
+      aria-labelledby="offcanvasTopLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 id="offcanvasTopLabel">Search Devices Here</h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <form action="">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="Search for Devices"
+            required
+            id="searchInput"
+            onkeyup="searchDevices()"
+          />
+        </form>
+        <br />
+        <div class="row" id="searchProducts"></div>
+      </div>
+    </div>
+    <div
+      id="carouselExampleFade"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="assets/bg/bg-carousel1.jpg"
+            height="700px"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="headimg">
+              All-in-One Tech Gear for the Modern Creator.
+            </h2>
+            <p class="fs-4 fst-italic paraimg">
+              "Upgrade your digital life with gear that delivers."
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            src="assets/bg/bg-carousel5.jpg"
+            height="700px"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="headimg">Smart Tech.Bold Style.One Lifestyle.</h2>
+            <p class="fs-4 fst-italic paraimg">
+              "Sleek gear, seamless living — your digital partner is here."
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            src="assets/bg/bg-carousel3.jpg"
+            height="700px"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="headimg">
+              Experience the Power of Sound and Smart Tech.
+            </h2>
+            <p class="fs-4 fst-italic paraimg">
+              "Smart tech, smarter sound — grab yours today."
+            </p>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <br />
+    <div>
+      <h1 class="text-center text-decoration-underline fs-2 text-dark ul">
+        Technology Devices
+      </h1>
+      <p class="text-center fs-5 text-secondary">
+        Technology sells best when it solves real problems.
+      </p>
+    </div>
+    <br />
+    <div class="container">
+      <div class="row" id="cardRow"></div>
+    </div>
+    <script src="assets/script/app.js"></script>
+    <footer>
+      <div style="background-color: #f8f9fa; border-top: 1px solid #dee2e6">
+        <div class="container">
+          <div class="row mt-4" style="justify-content: space-evenly">
+            <div class="col-lg-3 col-md-6">
+              <h1 style="color: #5fadf1;">Device<span class="tech">Tech</span></h1>
+              <br />
+              <p>
+                We're dedicated to delivering DeviceTech electronics - Powering Innovation, One Device at a Time!
+              </p>
+            </div>
+            <div class="col-lg-3 col-md-6" class="align-item-center">
+              <h5 class="fh">Quick Links</h5>
+              <br />
+              <li><a href="#">&gt;&gt;Home</a></li>
+              <li><a href="#">&gt;&gt;Product</a></li>
+              <li><a href="#">&gt;&gt;Deal</a></li>
+              <li><a href="#">&gt;&gt;Contact</a></li>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <h5 class="fh">Get in Touch</h5>
+              <br />
+              <p>Pattukkottai, Tamil Nadu</p>
+              <p>Phone: +91-6369107252</p>
+              <p>Email: s.aakash1283@gmail.com</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <h5 class="fh">Follow Us</h5>
+              <br />
+              <p>
+                Stay connected with us for the latest updates, insights, and
+                opportunities! Follow us on social media and be part of our
+                growing community. <br /><br />
+                <a class="f10" href="#"
+                  ><i class="fa-brands fa-x-twitter"></i
+                ></a>
+                <a class="f10" href="#"
+                  ><i class="fa-brands fa-facebook"></i
+                ></a>
+                <a class="f10" href="https://www.instagram.com/"
+                  ><i class="fa-brands fa-instagram"></i
+                ></a>
+                <a class="f10" href="https://www.linkedin.com/in/aakash-s-42604b280/"
+                  ><i class="fa-brands fa-linkedin"></i
+                ></a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="container copy">
+          <h4>&copy;2025 Copyright DeviceTech All Rights Reserved</h4>
+          <h5>Designed by <span class="c7" ><a href="mailto:s.aakash1283@gmail.com">Aakash S</a></span>
+          </h5>
+        </div>
+        <br>
+        <a href="#"><button class="sbtn"><i class="fa-solid fa-arrow-up"></i></button></a>
+      </div>
+    </footer>
+  </body>
+</html>
